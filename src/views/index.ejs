@@ -1,0 +1,64 @@
+<!-- 4. VIEWS/ INDEX.EJS -->
+<!-- INCLUIR -->
+<%- include('partials/_header'); -%>
+<pre>
+    
+</pre>
+    <div class="container">
+        <div class="row">
+            <!--FORM-->
+            <div class="col-md-5 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h1>Update Task</h1>
+
+                        <form action="/add" method="post">
+                            <div class="mb-3">
+                                <input class="form-control" type="text" name="title" placeholder="Title"
+                                     />
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" name="description" rows="3"
+                                    placeholder="Add a Description"></textarea>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+              <tr>
+                <th>N°</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+                <!-- FOR -->
+                <% for(let i=0; i < tasks.length;i++){ %>
+                    <tr>
+                        <td><%= i+1 %></td>
+                        <td><%= tasks[i].title %></td>
+                        <td><%= tasks[i].description %></td>
+                        <td><!-- NO IMPLEMENTADO -->
+                            <a href="/turn/<%= tasks[i].title %>" class="btn <%= tasks[i].status ? 'btn-success' : 'btn-dark' %>">Done</a>
+                            <!-- asociamos el boton a la ruta delete en routes/index.js, le envimaos la ruta de la task que creamos , ojo a los espacios-->
+                            <!-- este si -->
+                            <a href="/delete/<%= tasks[i].title %>" class="btn btn-danger">Delete</a>
+                            <a href="" class="btn btn-info">Edit</a>
+                        </td>
+                    </tr>
+                    <!-- FIN FOR -->
+               <% } %>
+                
+             
+            </tbody>
+          </table>
+    </div>
+    <%- include('partials/_footer'); -%>
+
+        <!-- para ver el codigo en la pagina -->
+        <!-- view-source:http://localhost:4000/ -->
